@@ -50,6 +50,28 @@ function statusChange(req, res){
 
 }
 
+function renameItem(req, res){
+    const {items, id} =req.body
+    const queryStrings= "UPDATE items SET items = ? WHERE id = ?"
+    getConnection().query(queryStrings, [items, id], (err, row, fields) => {
+        if(err){
+            res.json({
+                "status": err.toString()
+                
+              })
+              
+            return
+            } else {
+              res.send({
+                status: "item updated"
+              });
+            }
+            
+            res.end()
+        })
+
+}
+
 
 const pool = mysql.createPool({
     host: 'localhost',
@@ -65,7 +87,8 @@ function getConnection() {
 module.exports = {
     getAllItems,
     addList,
-    statusChange
+    statusChange,
+    renameItem
 
     
 }

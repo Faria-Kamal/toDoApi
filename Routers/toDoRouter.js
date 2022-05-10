@@ -4,7 +4,8 @@ const router = require("express").Router();
 const{
     getAllItems,
     addList,
-    statusChange
+    statusChange,
+    renameItem
     
 
 } = require('../Controllers/toDoController')
@@ -12,6 +13,7 @@ const{
 router.get("/all", getAllItems)
 router.post("/add", addList)
 router.put("/statuschange", statusChange)
+router.put("/rename", renameItem)
 
 
 
